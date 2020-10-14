@@ -4,27 +4,22 @@ import scrapy
 
 class BooksSpider(scrapy.Spider):
     name = "books"
-    allowed_domains = ["books.toscrape.com"]
+    allowed_domains = ["www.theluxuryartmepra.com"]
     start_urls = [
-        'http://books.toscrape.com/',
+        'https://www.theluxuryartmepra.com/flatware/titanium/',
     ]
 
     def parse(self, response):
-        for book_url in response.css("article.product_pod > h3 > a ::attr(href)").extract():
-            yield scrapy.Request(response.urljoin(book_url), callback=self.parse_book_page)
+        for item_url in response.css("ul.products-grid > li.item > a ::attr(href)").extract():
+            yield scrapy.Request(response.urljoin(item_url), callback=self.parse_book_page)
         next_page = response.css("li.next > a ::attr(href)").extract_first()
         if next_page:
             yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
 
     def parse_book_page(self, response):
         item = {}
-        product = response.css("div.product_main")
-        item["title"] = product.css("h1 ::text").extract_first()
-        item['category'] = response.xpath(
-            "//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li[1]/a/text()"
-        ).extract_first()
-        item['description'] = response.xpath(
-            "//div[@id='product_description']/following-sibling::p/text()"
-        ).extract_first()
-        item['price'] = response.css('p.price_color ::text').extract_first()
+        product = response.css("div.product-shop")
+        item["title"] = product.css(".product-name h1 ::text").extract_first()
+        item["number"] = product.css(".product-name span.sku ::text").extract_first()
+        item['price'] = product.css(".price-info .price-box span.price ::text").extract_first()
         yield item
