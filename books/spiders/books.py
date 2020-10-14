@@ -7,6 +7,7 @@ class BooksSpider(scrapy.Spider):
     allowed_domains = ["www.theluxuryartmepra.com"]
     start_urls = [
         'https://www.theluxuryartmepra.com/flatware/titanium/',
+        "https://www.theluxuryartmepra.com/flatware/stainless-steel/"
     ]
 
     def parse(self, response):
