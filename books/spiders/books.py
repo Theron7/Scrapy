@@ -6,11 +6,12 @@ class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["www.theluxuryartmepra.com"]
     start_urls = [
-        'https://www.theluxuryartmepra.com/flatware/titanium/',
-        "https://www.theluxuryartmepra.com/flatware/stainless-steel/",
-        "https://www.theluxuryartmepra.com/flatware/vintage/",
-        "https://www.theluxuryartmepra.com/flatware/epoque/",
-        "https://www.theluxuryartmepra.com/flatware/fantasia/",
+        'https://www.theluxuryartmepra.com/flatware/art/'',
+        #"https://www.theluxuryartmepra.com/flatware/titanium/",
+        #"https://www.theluxuryartmepra.com/flatware/stainless-steel/",
+        #"https://www.theluxuryartmepra.com/flatware/vintage/",
+        #"https://www.theluxuryartmepra.com/flatware/epoque/",
+        #"https://www.theluxuryartmepra.com/flatware/fantasia/",
         
     ]
 
@@ -26,5 +27,6 @@ class BooksSpider(scrapy.Spider):
         product = response.css("div.product-shop")
         item["title"] = product.css(".product-name h1 ::text").extract_first()
         item["number"] = product.css(".product-name span.sku ::text").extract_first()
-        #item['price'] = product.css(".price-info .price-box span.price ::text").extract_first()
+        item['price'] = product.css(".price-info .price-box span.price ::text").extract_first()
+        item["image"] = product.css(".img class .src=::image").extract_first()
         yield item
