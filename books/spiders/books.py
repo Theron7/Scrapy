@@ -28,5 +28,5 @@ class BooksSpider(scrapy.Spider):
         item["title"] = product.css(".product-name h1 ::text").extract_first()
         item["number"] = product.css(".product-name span.sku ::text").extract_first()
         item['price'] = product.css(".price-info .price-box span.price ::text").extract_first()
-        item["image"] = product.css(".img class .src=::image").extract_first()
+        #item["image"] = product.css(".img class .src=::image").extract_first()
         yield item
