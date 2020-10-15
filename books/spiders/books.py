@@ -7,7 +7,7 @@ class BooksSpider(scrapy.Spider):
     allowed_domains = ["www.theluxuryartmepra.com"]
     start_urls = [
         'https://www.theluxuryartmepra.com/flatware/art/',
-        #"https://www.theluxuryartmepra.com/flatware/titanium/",
+        "https://www.theluxuryartmepra.com/flatware/titanium/",
         #"https://www.theluxuryartmepra.com/flatware/stainless-steel/",
         #"https://www.theluxuryartmepra.com/flatware/vintage/",
         #"https://www.theluxuryartmepra.com/flatware/epoque/",
