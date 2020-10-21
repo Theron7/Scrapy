@@ -16,7 +16,7 @@ class BooksSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for item_url in response.css("ul.products-grid > li.item > a ::attr(href)").extract():
+        for item_url in response.css("ul.products-grid > .item a ::attr(href)").extract():
             yield scrapy.Request(response.urljoin(item_url), callback=self.parse_book_page)
         next_page = response.css("li.next > a ::attr(href)").extract_first()
         if next_page:
