@@ -5,7 +5,16 @@ import scrapy
 class YPspider(scrapy.Spider):
     name = "YP"
     allowed_domains = ["yellowpages.com"]
-    start_urls = ["https://www.yellowpages.com/atlanta-ga/interior-designers-decorators"]
+    start_urls = ["https://www.yellowpages.com/atlanta-ga/interior-designers-decorators",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=florida",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=alabama",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=tn",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=NC",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=sc",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=az",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=NY",
+    ]
+
 
     
     def parse(self, response):
