@@ -20,8 +20,10 @@ class YPspider(scrapy.Spider):
         item["title"] =  response.css("#main-header h1 ::text").extract_first()
         item["phone number"] = response.css(".phone ::text").extract_first()
         item["address"] = response.css(".address ::text").extract()
-        item["email"] = response.css(".email-business").attrib["href"]
-        item["web address"] = response.css(".primary-btn.website-link").attrib["href"]
+        if response.css(".email-business"):
+            item["email"] = response.css(".email-business").attrib["href"]
+        if response.css(".primary-btn.website-link"):
+            item["web address"] = response.css(".primary-btn.website-link").attrib["href"]
         item["fax Number"] = response.css("dd.extra-phones p:last-child span:last-child ::text").extract_first()
         item["Categories"] = response.css("dd.categories a ::text").extract()
         print(item)
