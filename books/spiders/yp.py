@@ -3,17 +3,22 @@ import scrapy
 
 
 class YPspider(scrapy.Spider):
-    name = "YP"
+    name = "YPSE Interior Design"
     allowed_domains = ["yellowpages.com"]
-    start_urls = ["https://www.yellowpages.com/atlanta-ga/interior-designers-decorators",
-    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=florida",
-    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=alabama",
+    start_urls = ["https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=ga",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=fl",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=al",
     "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=tn",
     "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=NC",
     "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=sc",
-    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=az",
-    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=NY",
-    ]
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=ms",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=ar",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=la",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=ky",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=va",
+    "https://www.yellowpages.com/search?search_terms=interior+decorators&geo_location_terms=wv",
+    
+        ]
 
 
     
