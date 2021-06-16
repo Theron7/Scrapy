@@ -7,8 +7,6 @@ class Asidspider(scrapy.Spider):
     allowed_domains = ["asid.org"]
     start_urls = ["https://www.asid.org/find-a-pro?zip=&zip_radius=100&display_name=&business_name=&project_types=&project_types%5B%5D=HOME" ]
 
-
-    
     def parse(self, response):
         for item_url in response.css("div.fapip-index-results a.fapip-abstract ::attr(href)").extract():
             yield scrapy.Request(response.urljoin(item_url), callback=self.parse_business_listing)
@@ -18,7 +16,10 @@ class Asidspider(scrapy.Spider):
 
     def parse_business_listing(self, response):
         item = {} 
-        item["title"] =  response.css("h1.fapip-view-header-title ::text").extract_first()
+        item["title"] = response.css("h1.fapip-view-header-title ::text").extract_first()
+        item["phone"] = response.css(".fapip-view-header-contact-links li:first-child > span").xpath('string(.)').extract_first()[4:].strip()
+        item["website"] = response.css(".fapip-view-header-contact-links li:nth-child(2) a ::attr(href)").extract_first()
+        item["email"] = response.css(".fapip-view-header-contact-links li:last-child a ::attr(href)").extract_first()[7:]
         # item["phone number"] = response.css(".phone ::text").extract_first()
         # item["address"] = response.css(".address ::text").extract()
         # if response.css(".email-business"):
